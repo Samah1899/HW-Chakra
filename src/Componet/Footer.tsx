@@ -1,47 +1,72 @@
-import React from 'react'
-import { ButtonGroup, Container, IconButton, Stack, Text,FormControl ,FormLabel,FormHelperText,Input} from '@chakra-ui/react'
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
-function Footer() {
-  return (
-    <>
-      <Container as="footer" role="contentinfo" py={{ base: '12', md: '16' }}>
-    <Stack spacing={{ base: '4', md: '5' }}>
-      <Stack justify="space-between" direction="row" align="center">
-        {/* <Logo /> */}
-        <ButtonGroup variant="ghost">
-          <IconButton
-            as="a"
-            href="https://www.linkedin.com/"
-            aria-label="LinkedIn"
-            icon={<FaLinkedin fontSize="1.25rem" />}
-          />
-          <IconButton as="a" href="https://github.com/Samah1899" aria-label="GitHub" icon={<FaGithub fontSize="1.25rem" />} />
-          <IconButton
-            as="a"
-            href="https://twitter.com/"
-            aria-label="Twitter"
-            icon={<FaTwitter fontSize="1.25rem" />}
-          />
-        </ButtonGroup>
-      </Stack>
-      <Text fontSize="sm" color="subtle">
-        &copy; {new Date().getFullYear()} <FormControl>
-  <FormLabel>Email address</FormLabel>
-  <Input type='email' />
-  <FormHelperText></FormHelperText>
-</FormControl>
-      </Text>
-    </Stack>
-  </Container>
-    
-    
-    
-    
-    
-    
-    
-    </>
-  )
-}
+import {
+  Box,
+  chakra,
+  Container,
+  Stack,
+  Text,
+  useColorModeValue,
+  VisuallyHidden,
+} from '@chakra-ui/react';
+import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { ReactNode } from 'react';
 
-export default Footer
+const SocialButton = ({
+  children,
+  label,
+  href,
+}: {
+  children: ReactNode;
+  label: string;
+  href: string;
+}) => {
+  return (
+    <chakra.button
+      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+      rounded={'full'}
+      w={8}
+      h={8}
+      cursor={'pointer'}
+      as={'a'}
+      href={href}
+      display={'inline-flex'}
+      alignItems={'center'}
+      justifyContent={'center'}
+      transition={'background 0.3s ease'}
+      _hover={{
+        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
+      }}>
+      <VisuallyHidden>{label}</VisuallyHidden>
+      {children}
+    </chakra.button>
+  );
+};
+
+export default function SmallWithSocial() {
+  return (
+    <Box
+      bg={useColorModeValue('gray.50', 'gray.900')}
+      color={useColorModeValue('gray.700', 'gray.200')}>
+      <Container
+        as={Stack}
+        maxW={'6xl'}
+        py={4}
+        direction={{ base: 'column', md: 'row' }}
+        spacing={10}
+        justify={{ base: 'center', md: 'space-between' }}
+        align={{ base: 'center', md: 'center' }}>
+        <Text className='logo11'>SaudiTourism</Text>
+        <Stack direction={'row'} spacing={6}>
+          <SocialButton label={'Twitter'} href={'https://twitter.com/'}>
+            <FaTwitter />
+          </SocialButton>
+          <SocialButton label={'YouTube'} href={'https://www.youtube.com/'}>
+            <FaYoutube />
+          </SocialButton>
+          <SocialButton label={'Instagram'} href={'https://www.instagram.com/'}>
+            <FaInstagram />
+          </SocialButton>
+        </Stack>
+      </Container>
+    </Box>
+  );
+}

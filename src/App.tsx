@@ -4,7 +4,14 @@ import './App.css'
 import Nav from './Componet/Nav'
 import Footer from './Componet/Footer'
 import History from './Componet/History'
-import Slider from './Componet/Slider'
+import Home from './Componet/Home'
+import Attraction from './Componet/Attraction'
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Link as RouterLink, LinkProps as RouterLinkProps } from "react-router-dom";
+import { Card } from '@chakra-ui/react'
+// import Card from './Componet/Card'
+// import Image1 from './Componet/Image1'
+
 
 function App() {
   
@@ -12,10 +19,22 @@ function App() {
   return (
     <>
     <Nav />
-    <Slider/>
-    <Footer/>
-    <History/>
+    {/* <Slider/> */}
+    {/* <Card /> <Card /> <Card /> */}
+    {/* <Image1/> */}
     
+    
+    <Routes>
+   
+
+<Route path="/Attraction" element={<Attraction/>}  />
+
+<Route path="/" element={<Home/>} />
+
+<Route path = "/ourHistory" element={<History/>} />
+
+
+</Routes>
     </>
   )
   
